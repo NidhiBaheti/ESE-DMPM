@@ -1,0 +1,15 @@
+data<-read.csv("C://Users//ozaka//Documents//R//TC.csv")
+str(data)
+sapply(data, function(x){sum(is.na(x))})
+#install dplyr package *install.packages("dplyr")*
+library(dplyr)
+rename(data, Cost=Price)
+select(data,Age,Price)
+slice(data,100)#taken out 100th row out of dataset.
+sample_n(data,10)#Used to print first n no. of rows from d.set.
+arrange(data)#Arranges data in ascending order
+mutate(data,Average=(data$CC/data$HP))#
+complete.cases(data$Age)#check if there are any missing values. 
+glimpse(data)#to get the glimpse of the data
+boxplot.stats(data$Price)#plotting the boxplot to find distribution.
+boxplot(data$Age)

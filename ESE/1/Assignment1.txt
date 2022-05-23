@@ -1,0 +1,32 @@
+data <- read.csv("C:\\Users\\ozaka\\Documents\\R\\pva97nk.csv")
+colnames(data)
+sapply(data, function(x) sum (is.na(x)))
+#for TargetD
+data$TargetD[is.na(data$TargetD)] -> 0
+data$GiftAvgCard36[is.na(data$GiftAvgCard36)] <- mean(data$GiftAvgCard36, na.rm = TRUE)
+data$DemAge[is.na(data$DemAge)] <- mean (data$DemAge, na.rm = TRUE)
+library(moments)
+kurtosis(data$DemAge)
+skewness(data$DemAge)
+hist(data$DemAge)
+#distribution plot
+x = rep(1,nrow(data))
+plot(x,data$DemAge)
+#normality conditions
+qqnorm(data$DemAge)
+qqline(data$DemAge)
+#corelation plot
+datanum <- data[c(1,2,3,4,5)]
+cor(datanum)
+#dataset partition
+dt =(sample(nrow(data),nrow(data)*.7))
+train <- data[dt,]
+testdiv <- data[-dt,]
+
+dtest = (sample(nrow(testdiv),nrow(testdiv)*.5))
+val <- testdiv[dtest,]
+test<- testdiv[-dtest,]
+
+nrow(train)
+nrow(test)
+nrow(val)
